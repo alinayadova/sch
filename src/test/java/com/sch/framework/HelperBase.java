@@ -40,6 +40,7 @@ public class HelperBase {
     }
 
     public void waitForElementAndClick(By locator, int timeOut){
+
         new WebDriverWait(driver, timeOut)
                 .until(ExpectedConditions.presenceOfElementLocated(locator)).click();
     }
@@ -51,6 +52,7 @@ public class HelperBase {
             driver.findElement(locator).sendKeys(text);
         }
     }
+
     public WebElement waitForElement(By locator, int timeOut){
         return new WebDriverWait(driver, timeOut)
                 .until(ExpectedConditions.presenceOfElementLocated(locator));
@@ -59,12 +61,7 @@ public class HelperBase {
     public void swipeToLeft(By locator) {
         TouchAction action = new TouchAction(driver);
 
-        Dimension size = driver.manage().window().getSize();
-
-        int leftPoint = (int) (size.width* 0.8);
-        int rightPoint  = (int) (size.width* 0.8);
-
-        WebElement element = waitForElement(locator, 10);
+        WebElement element = driver.findElement(locator);
 
         int leftX = (int) (element.getLocation().getX() * 0.2);
         int rightX = (int) ((leftX + element.getSize().getWidth()) * 0.8);
@@ -72,10 +69,10 @@ public class HelperBase {
         int lowerY = upperY + element.getSize().getHeight();
         int middleY = (upperY + lowerY) / 2;
 
-        action.longPress(PointOption.point(rightPoint, middleY))
+        action.longPress(PointOption.point(rightX, middleY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(3)))
 
-                .moveTo(PointOption.point(leftPoint, middleY))
+                .moveTo(PointOption.point(leftX, middleY))
                 .release().perform();
     }
 
@@ -83,11 +80,11 @@ public class HelperBase {
         TouchAction action = new TouchAction(driver);
         //get activity points
         Dimension size = driver.manage().window().getSize();
-        int leftPoint = (int) (size.width* 0.8);
-        int rightPoint  = (int) (size.width* 0.8);
+        int leftPoint = (int) (size.width* 0.2);
+        int rightPoint  = (int) (size.width* 0.5);
 
         //get element's point
-        WebElement element = driver.findElement(locator);
+        WebElement element = waitForElement(locator, 10);
 
         int leftX = (int) (element.getLocation().getX()* 0.2);
         int rightX = (int) ((leftX + element.getSize().getWidth())* 0.8);
@@ -97,10 +94,28 @@ public class HelperBase {
 
         action.longPress(PointOption.point(rightPoint, middleY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(3)))
-
                 .moveTo(PointOption.point(leftPoint, middleY))
                 .release().perform();
     }
 
-
+    public void moveElementToLeft2(By locator){
+        TouchAction action = new TouchAction(driver);
+        //get activity points
+        Dimension size = driver.manage().window().getSize();
+        int leftPoint = (int) (size.width* 0.2);
+        int rightPoint = (int) (size.width* 0.8);
+//get Element's point
+        WebElement element = driver.findElement(locator);
+        int leftX = (int) (element.getLocation().getX()* 0.2);
+        int rightX = (int) ((leftX + element.getSize().getWidth())* 0.8);
+        int upperY = element.getLocation().getY() ;
+        int lowerY = upperY + element.getSize().getHeight();
+        int middleY = (upperY + lowerY) / 2;
+        action
+                .longPress(PointOption.point(rightX, middleY))
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(3)))
+                .moveTo(PointOption.point(leftX, middleY))
+                .release()
+                .perform();
+    }
 }

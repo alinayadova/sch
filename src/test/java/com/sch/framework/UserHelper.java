@@ -19,7 +19,7 @@ public class UserHelper extends HelperBase{
         click(By.id("login_btn"));
     }
 
-    public boolean isLoginButtonPresent() {
+    public boolean isLoginButtonPresent()  {
         return isElementPresent(By.id("login_btn"));
     }
 
@@ -27,7 +27,7 @@ public class UserHelper extends HelperBase{
         fillLoginForm(new User()
                 .withEmail("mickeymouse.tester1@gmail.com")
                 .withPassword("Mm123456789"));
-        closeKeyboard();
+      //  closeKeyboard();
         clickOnLoginButton();
         Thread.sleep(5000);
     }

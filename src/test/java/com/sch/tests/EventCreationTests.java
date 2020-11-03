@@ -16,35 +16,27 @@ public class EventCreationTests extends TestBase {
     public void testEventCreation(){
         app.getEventHelper().clickOnPlusButton();
         app.getEventHelper().clickOnPencil();
-        app.getEventHelper().fillEventCreationForm("a34a", "1", 3, "500");
+        app.getEventHelper().fillEventCreationForm("ala", "1", 3, "500");
         app.getEventHelper().clickOnAddEventButton();
     }
 
     @Test
     public void testEventCreationChangeDate(){
-        int before = app.getEventHelper().getEventCountByMonth("November");
+        //int before = app.getEventHelper().getEventCountByMonth("November");
         app.getEventHelper().clickOnPlusButton();
         app.getEventHelper().clickOnPencil();
         app.getEventHelper().swipeCalendarToLeft();
+        app.getEventHelper().selectDate("future","NOVEMBER", "10");
 
-        //string month, String day(Dec 31)
-        //list dates (3)
-        // (for int i=0;  i<list.size; i++)
-        //String month = ...
-        //while(month !=month){
-        // clickOnArrow();
-        // }
-        //while (Displayedday !=displayedDay){
-        //clickOnArrow();
-
-
-        app.getEventHelper().fillEventCreationForm("aafg", "1", 3, "100");
+        app.getEventHelper().fillEventCreationForm("aаjjh", "1", 3, "50");
         app.getEventHelper().clickOnAddEventButton();
 
         Assert.assertTrue(app.getEventHelper().isEventPresent());
-        int after  = app.getEventHelper().getEventCountByMonth("November");
+        int after = app.getEventHelper().getEventCountByMonth("November");
 
-        Assert.assertEquals(after, before+1);
+        //   Assert.assertEquals(after, before+1 );
+
+
     }
 
 

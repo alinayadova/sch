@@ -11,7 +11,7 @@ public class LoginTests extends TestBase {
         app.getUserHelper().fillLoginForm(new User()
                 .withEmail("mickeymouse.tester1@gmail.com")
                 .withPassword("Mm123456789"));
-        app.getUserHelper().closeKeyboard();
+        // app.getUserHelper().closeKeyboard();
         app.getUserHelper().clickOnLoginButton();
         Thread.sleep(5000);
 
