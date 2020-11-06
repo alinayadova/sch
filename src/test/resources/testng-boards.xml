@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="RegressionTestsWithoutLogin" verbose="1" >
+    <test name="Boards" >
+        <classes>
+            <class name="com.telRan.tests.tests.BoardCreationTests2" >
+                <methods>
+                    <exclude name=".*FromDataProvider*.*"/>
+                </methods>
+            </class>
+            <class name="com.telRan.tests.tests.BoardModificationTests" />
+        </classes>
+    </test>
+</suite>

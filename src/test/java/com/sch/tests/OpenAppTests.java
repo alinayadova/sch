@@ -14,5 +14,12 @@ public class OpenAppTests extends TestBase{
 
     }
 
+    @Test
+    public void checkThatCreatedEventsArePresentTest() throws InterruptedException {
+        app.getUserHelper().defaultLogin();
+        //app.getEventHelper().getMonth();
+        app.getEventHelper().multiSwipe(5);
+    }
+
 
 }

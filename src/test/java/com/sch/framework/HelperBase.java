@@ -19,6 +19,7 @@ public class HelperBase {
     public HelperBase(AppiumDriver driver) {
         this.driver = driver;
     }
+
     public void click(By locator) {
         driver.findElement(locator).click();
     }
@@ -36,24 +37,24 @@ public class HelperBase {
     }
 
     public boolean isElementPresent(By locator) {
-        return driver.findElements(locator).size()>0;
+        return driver.findElements(locator).size() > 0;
     }
 
-    public void waitForElementAndClick(By locator, int timeOut){
+    public void waitForElementAndClick(By locator, int timeOut) {
 
         new WebDriverWait(driver, timeOut)
                 .until(ExpectedConditions.presenceOfElementLocated(locator)).click();
     }
 
-    public void waitForElementAndType(By locator, int timeOut, String text){
-        if(text != null) {
+    public void waitForElementAndType(By locator, int timeOut, String text) {
+        if (text != null) {
             waitForElementAndClick(locator, timeOut);
             driver.findElement(locator).clear();
             driver.findElement(locator).sendKeys(text);
         }
     }
 
-    public WebElement waitForElement(By locator, int timeOut){
+    public WebElement waitForElement(By locator, int timeOut) {
         return new WebDriverWait(driver, timeOut)
                 .until(ExpectedConditions.presenceOfElementLocated(locator));
     }
@@ -76,18 +77,18 @@ public class HelperBase {
                 .release().perform();
     }
 
-    public void moveElementToLeft(By locator){
+    public void moveElementToLeft(By locator) {
         TouchAction action = new TouchAction(driver);
         //get activity points
         Dimension size = driver.manage().window().getSize();
-        int leftPoint = (int) (size.width* 0.2);
-        int rightPoint  = (int) (size.width* 0.5);
+        int leftPoint = (int) (size.width * 0.2);
+        int rightPoint = (int) (size.width * 0.5);
 
         //get element's point
         WebElement element = waitForElement(locator, 10);
 
-        int leftX = (int) (element.getLocation().getX()* 0.2);
-        int rightX = (int) ((leftX + element.getSize().getWidth())* 0.8);
+        int leftX = (int) (element.getLocation().getX() * 0.2);
+        int rightX = (int) ((leftX + element.getSize().getWidth()) * 0.8);
         int upperY = element.getLocation().getY();
         int lowerY = upperY + element.getSize().getHeight();
         int middleY = (upperY + lowerY) / 2;
@@ -98,17 +99,17 @@ public class HelperBase {
                 .release().perform();
     }
 
-    public void moveElementToLeft2(By locator){
+    public void moveElementToLeft2(By locator) {
         TouchAction action = new TouchAction(driver);
         //get activity points
         Dimension size = driver.manage().window().getSize();
-        int leftPoint = (int) (size.width* 0.2);
-        int rightPoint = (int) (size.width* 0.8);
+        int leftPoint = (int) (size.width * 0.2);
+        int rightPoint = (int) (size.width * 0.8);
 //get Element's point
         WebElement element = driver.findElement(locator);
-        int leftX = (int) (element.getLocation().getX()* 0.2);
-        int rightX = (int) ((leftX + element.getSize().getWidth())* 0.8);
-        int upperY = element.getLocation().getY() ;
+        int leftX = (int) (element.getLocation().getX() * 0.2);
+        int rightX = (int) ((leftX + element.getSize().getWidth()) * 0.8);
+        int upperY = element.getLocation().getY();
         int lowerY = upperY + element.getSize().getHeight();
         int middleY = (upperY + lowerY) / 2;
         action
@@ -118,4 +119,33 @@ public class HelperBase {
                 .release()
                 .perform();
     }
+
+    public void swipeUp(){
+        TouchAction action = new TouchAction(driver);
+        Dimension size = driver.manage().window().getSize();
+        int x = size.width / 2;
+        int startY = (int) (size.height * 0.8);
+        int endY = (int) (size.height * 0.3);
+
+        action.longPress(PointOption.point(x, startY))
+                .moveTo(PointOption.point(x, endY))
+                .release()
+                .perform();
+    }
+
+    public void multiSwipe(int swipesCount){
+        for(int i=0; i <=  swipesCount; i++){
+            swipeUp();
+        }
+    }
+
+    public void swipeToElement(By locator, int maxSwipes){
+        int alreadySwiped = 0;
+        while(! isElementPresent(locator)&&alreadySwiped < maxSwipes){
+            swipeUp();
+            alreadySwiped++;
+        }
+
+    }
+
 }

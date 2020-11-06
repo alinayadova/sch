@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public class ApplicationManager {
 
@@ -16,6 +17,7 @@ public class ApplicationManager {
 
    UserHelper userHelper;
    EventHelper eventHelper;
+   Logger logger;
 
     public void init() throws MalformedURLException {
         capabilities = new DesiredCapabilities();
@@ -30,6 +32,8 @@ public class ApplicationManager {
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        logger.info("device is Ready");
 
         userHelper = new UserHelper(driver);
         eventHelper = new EventHelper(driver);
