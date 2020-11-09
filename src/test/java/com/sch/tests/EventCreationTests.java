@@ -25,7 +25,7 @@ public class EventCreationTests extends TestBase {
 
             app.getEventHelper().fillEventCreationForm("ahj", "1", 3, "150");
             app.getEventHelper().clickOnAddEventButton();
-            
+
         }
 
         @Test
