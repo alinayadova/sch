@@ -1,0 +1,5 @@
+14:06:37 [Test worker] ERROR com.sch.tests.TestBase - FAILED: Test method testEventCreation
+14:06:37 [Test worker] ERROR com.sch.tests.TestBase - FAILED: Test method testEventCreationChangeDate
+14:06:37 [Test worker] ERROR com.sch.tests.TestBase - FAILED: Test method testLogin
+14:06:37 [Test worker] ERROR com.sch.tests.TestBase - FAILED: Test method checkThatCreatedEventsArePresentTest
+14:06:37 [Test worker] ERROR com.sch.tests.TestBase - FAILED: Test method testLaunchTest

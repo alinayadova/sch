@@ -32,6 +32,19 @@ public class UserHelper extends HelperBase{
         Thread.sleep(5000);
     }
 
+    public  void login(){
+        fillLoginForm(new User()
+                .withEmail("mickeymouse.tester1@gmail.com")
+                .withPassword("Mm123456789"));
+        closeKeyboard();
+        clickOnLoginButton();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 
