@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.sch.tests.APIUserRegistrationTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2020-11-09T12:06:37" hostname="LAPTOP-I6GGBKHC" time="0.0">
+<testsuite name="com.sch.tests.APIUserRegistrationTests" tests="1" skipped="1" failures="0" errors="0" timestamp="2020-11-09T12:31:15" hostname="LAPTOP-I6GGBKHC" time="0.0">
   <properties/>
   <testcase name="createUsertest" classname="com.sch.tests.APIUserRegistrationTests" time="0.0">
     <skipped/>
